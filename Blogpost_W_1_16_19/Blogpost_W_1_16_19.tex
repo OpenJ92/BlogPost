@@ -1,0 +1,63 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+
+\title{A concise course in Probability Theory}
+\author{Jacob Vartuli-Schonberg}
+\date{January 2019}
+
+\begin{document}
+\maketitle
+This is a recounting of the contents I learned through the reading of Y.A. Rozanov's Probability Theory: a concise course. \\
+\\
+To purchase this book see \url{http://store.doverpublications.com/0486635449.html}
+\section{Principle of Inclusion/Exclusion}
+% For this section, use the following references to fill it's contents:
+Suppose you want to take into consideration the set \(A_1 \cup A_2 \cup \hdots \cup A_n\). Recall that each \(A_i \in \Omega\) where \(i \in [1, n]\) are composed of elementary events. That is \(A_i = \bigcup_{e_k \in K_i} e_k\) where \(K_i\) is a subset of elementary partition of \(\Omega\). With this in mind we might write our initial expression as
+
+\[\bigcup_{e_k \in K_1} e_k \cup \bigcup_{e_k \in K_2} e_k \cup \hdots \cup \bigcup_{e_k \in K_n} e_k\]
+
+In this context, a concern that may come to mind is the redundant elements of this form. By this I mean, the appearance of elementary events a multitude of times over the course of union. This is redundant in the sense that
+
+\[e_1 \cup e_2 =  e_1 \cup \lim_{n \to \infty} \bigcup_{0}^{n} e_2\]
+
+Our goal here, and the subject of this section, is to demonstrate the process by which one can abandon such redundant elements and retain a more pure, albeit more complicated, form.
+
+Let us first consider this over-counting with respect to pairwise sub unions in our expression.
+
+\[\hdots \bigcup_{e_k \in K_i} e_k \cup \bigcup_{e_k \in K_j} e_k \hdots\]
+In isolation, we might write the previous as
+
+\[\hdots
+  \Bigg( \bigcup_{e_k \in K_i - K_j} e_k \cup \bigcup_{e_k \in K_i \cap K_j} e_k \Bigg)
+  \cup
+  \Bigg( \bigcup_{e_k \in K_j - K_i} e_k \cup \bigcup_{e_k \in K_j \cap K_i} e_k \Bigg)
+  \hdots\]
+\[\hdots
+  \bigcup_{e_k \in K_i - K_j} e_k \cup \bigcup_{e_k \in K_j \cap K_i} \big(e_k \cup e_k\big) \cup \bigcup_{e_k \in K_j - K_i} e_k
+  \hdots\]
+
+Here we've isolated repeated elements in our initial expression. We might then suppose that with the introduction of a delete operator, \(\ominus\), we might move towards our goal of a pure construction by writing:
+
+\[  \bigcup_{i = 1}^{n} \bigcup_{e_k \in K_i} e_k
+    \ominus
+    \bigcup_{i=1}^{n} \bigcup_{j = i + 1}^{n} \bigcup_{e_k \in K_i \cap K_j} e_k\]
+
+Unfortunately, this will not be the end of our journey. Lets take a closer look at the term we've built. Specifically, for the sake of demonstration, lets build an upper triangular matrix which will hold the terms we've just constructed where \(V_{ij} = \bigcup_{e_k \in K_i \cap K_j}e_k\). These terms, again, are the union of elementary events belonging to \(K_i \cap K_j\).
+
+\[  V =
+\begin{bmatrix}
+\O & \bigcup_{e_k \in K_1 \cap K_2} e_k & \bigcup_{e_k \in K_1 \cap K_3} e_k & \bigcup_{e_k \in K_1 \cap K_4} e_k & \bigcup_{e_k \in K_1 \cap K_5} e_k & \hdots\\
+\O & \O & \bigcup_{e_k \in K_2 \cap K_3} e_k & \bigcup_{e_k \in K_2 \cap K_4} e_k & \bigcup_{e_k \in K_2 \cap K_5} e_k & \hdots \\
+\O & \O & \O & \bigcup_{e_k \in K_3 \cap K_4}e_k & \bigcup_{e_k \in K_3 \cap K_5}e_k & \hdots \\
+\O & \O & \O & \O & \bigcup_{e_k \in K_4 \cap K_5}e_k & \hdots \\
+\O & \O & \O & \O & \O & \hdots\\
+\vdots & \vdots & \vdots & \vdots & \vdots & \ddots
+\end{bmatrix}
+\]
+
+
+% What is our approach going to be here. I'm thinking that we approach this as we did before. First show that we have to remove elements shared, then add back the elements we lost, then remove, then add and by induction, show that we much check these pairings up to n.
+
+\section{The Continuity Property of Probability}
+\end{document}
